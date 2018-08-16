@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.SplashScreen.SplashActivity"
+    android:background="@drawable/backgroundplashscreen">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#40000000">
+
+        <LinearLayout
+            android:id="@+id/lnlayout1"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/iconbag"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="Thế giới mua sắm \n trong tầm tay bạn"
+                android:textSize="18sp"
+                android:textColor="#fff"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnlayout2"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/iconmoney"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="Giao hàng tận nơi \n + thanh toán dễ dàng"
+                android:textSize="18sp"
+                android:textColor="#fff"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnlayout3"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/iconsercurity"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="100% Bảo vệ người tiêu dùng \n Cam kết"
+                android:textSize="18sp"
+                android:textColor="#fff"
+                android:gravity="center"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:src="@drawable/lazadacustomerlogo"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"/>
+
+</RelativeLayout>
