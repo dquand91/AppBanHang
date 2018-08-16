@@ -17,4 +17,8 @@
         <item name="color">@color/colorWhite</item>
     </style>
 
+    <style name="capfalse" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+    </style>
+
 </resources>
