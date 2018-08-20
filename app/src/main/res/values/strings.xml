@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DemoAppBanHang</string>
+    <string name="open_drawer">Mở</string>
+    <string name="close_drawer">Đóng</string>
 </resources>
