@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
-import luongduongquan.com.demoappbanhang.MainActivity;
+import luongduongquan.com.demoappbanhang.View.TrangChu.MainActivity;
 import luongduongquan.com.demoappbanhang.R;
 
 public class SplashActivity extends AppCompatActivity {

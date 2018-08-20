@@ -12,12 +12,13 @@
         android:id="@+id/content_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <!--Day la phan noi dung chinh cua Trang Chu-->
 
         <RelativeLayout
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".MainActivity">
+            tools:context=".View.TrangChu.MainActivity">
 
             <android.support.design.widget.AppBarLayout
                 android:id="@+id/appBar_layout_main"

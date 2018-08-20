@@ -1,4 +1,4 @@
-package luongduongquan.com.demoappbanhang;
+package luongduongquan.com.demoappbanhang.View.TrangChu;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,12 +8,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import luongduongquan.com.demoappbanhang.Adapter.ViewPagerAdapterMain;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+import luongduongquan.com.demoappbanhang.Adapter.ViewPagerAdapterMain;
+import luongduongquan.com.demoappbanhang.Model.ObjectClass.LoaiSanPham;
+import luongduongquan.com.demoappbanhang.Presenter.TrangChu.PresenterLogicXuLyMenu;
+import luongduongquan.com.demoappbanhang.R;
+
+public class MainActivity extends AppCompatActivity implements IViewXuLyMenu {
 
 	Toolbar toolbar;
 	private TabLayout mTabLayout;
@@ -50,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
 		mTabLayout.setupWithViewPager(mViewPager);
 
 
+		PresenterLogicXuLyMenu presenterLogicXuLyMenu = new PresenterLogicXuLyMenu(this);
+		presenterLogicXuLyMenu.LayDanhSachMenu();
+
+
 	}
 
 	@Override
@@ -64,5 +74,10 @@ public class MainActivity extends AppCompatActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void HienThiDanhSachMenu(List<LoaiSanPham> loaiSanPhamList) {
+		Log.d("QUAN123", "HienThiDanhSachMenu: " + loaiSanPhamList.get(0).getTENLOAISP());
 	}
 }
