@@ -11,9 +11,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ExpandableListView;
 
 import java.util.List;
 
+import luongduongquan.com.demoappbanhang.Adapter.ExpandListAdapterCustom;
 import luongduongquan.com.demoappbanhang.Adapter.ViewPagerAdapterMain;
 import luongduongquan.com.demoappbanhang.Model.ObjectClass.LoaiSanPham;
 import luongduongquan.com.demoappbanhang.Presenter.TrangChu.PresenterLogicXuLyMenu;
@@ -29,15 +31,17 @@ public class MainActivity extends AppCompatActivity implements IViewXuLyMenu {
 	private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mDrawerToggle; // cái dấu 3 gạch để bấm vào sẽ show ra Drawer Layout
 
+	ExpandableListView expandableListView;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
 		toolbar = findViewById(R.id.appbar_toolbar_main);
-
 		mTabLayout = findViewById(R.id.tabLayout_main);
 		mViewPager = findViewById(R.id.viewpager_main);
+		expandableListView = findViewById(R.id.expandListViewMenu_main);
 
 		toolbar.setTitle("");
 		setSupportActionBar(toolbar);
@@ -79,5 +83,8 @@ public class MainActivity extends AppCompatActivity implements IViewXuLyMenu {
 	@Override
 	public void HienThiDanhSachMenu(List<LoaiSanPham> loaiSanPhamList) {
 		Log.d("QUAN123", "HienThiDanhSachMenu: " + loaiSanPhamList.get(0).getTENLOAISP());
+		ExpandListAdapterCustom expandListAdapter = new ExpandListAdapterCustom(this, loaiSanPhamList);
+		expandableListView.setAdapter(expandListAdapter);
+		expandListAdapter.notifyDataSetChanged();
 	}
 }

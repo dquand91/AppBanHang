@@ -59,7 +59,7 @@
 
 
     <ExpandableListView
-        android:id="@+id/expandMenu_main"
+        android:id="@+id/expandListViewMenu_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
