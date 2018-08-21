@@ -54,4 +54,14 @@ public class LoaiSanPham {
         this.listCon = listCon;
     }
 
+    public boolean haveChild(){
+        if(listCon == null){
+            return false;
+        }
+        if(listCon.isEmpty()){
+            return false;
+        }
+        return true;
+    }
+
 }

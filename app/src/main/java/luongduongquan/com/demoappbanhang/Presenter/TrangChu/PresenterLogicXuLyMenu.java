@@ -1,8 +1,6 @@
 package luongduongquan.com.demoappbanhang.Presenter.TrangChu;
 
 
-import android.util.Log;
-
 import java.util.List;
 
 import luongduongquan.com.demoappbanhang.Model.ObjectClass.LoaiSanPham;
@@ -24,8 +22,11 @@ public class PresenterLogicXuLyMenu implements IPresenterXuLyMenu{
 	@Override
 	public void LayDanhSachMenu() {
 
+		// Ở đây là do cái menu Loai San Pham là menu đa cấp (ở đây là 3 cấp) Cha - Con - Cháu
+		// Nên ở đây mình sẽ chạy API 3 lần để lấy được hết các list San Pham con.
+
 		DataClientListener getLoaiSanPhamTheoCha = APIUtils.getDataRetrofit();
-		Call<List<LoaiSanPham>> callback =getLoaiSanPhamTheoCha.getLoaiSanPhamTheoCha("1");
+		Call<List<LoaiSanPham>> callback =getLoaiSanPhamTheoCha.getLoaiSanPhamTheoCha("0");
 		callback.enqueue(new Callback<List<LoaiSanPham>>() {
 			@Override
 			public void onResponse(Call<List<LoaiSanPham>> call, Response<List<LoaiSanPham>> response) {
@@ -40,9 +41,31 @@ public class PresenterLogicXuLyMenu implements IPresenterXuLyMenu{
 					call1.enqueue(new Callback<List<LoaiSanPham>>() {
 						@Override
 						public void onResponse(Call<List<LoaiSanPham>> call, Response<List<LoaiSanPham>> response) {
-							loaiSanPhamList.get(finalI).setListCon(response.body());
-						}
 
+							final List<LoaiSanPham> loaiSanPhamListCon = response.body();
+
+							int count = loaiSanPhamListCon.size();
+							for (int j = 0; j < count; j++) {
+								int maloaiSP = loaiSanPhamListCon.get(j).getMALOAISP();
+								DataClientListener getLoaiSanPhamTheoCha = APIUtils.getDataRetrofit();
+								Call<List<LoaiSanPham>> call2 = getLoaiSanPhamTheoCha.getLoaiSanPhamTheoCha(String.valueOf(maloaiSP));
+								final int finalJ = j;
+								call2.enqueue(new Callback<List<LoaiSanPham>>() {
+									@Override
+									public void onResponse(Call<List<LoaiSanPham>> call, Response<List<LoaiSanPham>> response) {
+										loaiSanPhamListCon.get(finalJ).setListCon(response.body());
+									}
+
+									@Override
+									public void onFailure(Call<List<LoaiSanPham>> call, Throwable t) {
+										iViewXuLyMenu.FailFromGetDanhSachMenu("FAIL, can not get data Child of Child from server --- " + t.getMessage());
+									}
+								});
+								if(j == count -1){
+									loaiSanPhamList.get(finalI).setListCon(loaiSanPhamListCon);
+								}
+							}
+						}
 						@Override
 						public void onFailure(Call<List<LoaiSanPham>> call, Throwable t) {
 							iViewXuLyMenu.FailFromGetDanhSachMenu("FAIL, can not get data Child from server --- " + t.getMessage());
