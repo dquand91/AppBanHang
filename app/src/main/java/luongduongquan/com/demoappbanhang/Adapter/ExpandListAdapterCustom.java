@@ -10,10 +10,10 @@ import android.widget.TextView;
 import java.util.List;
 
 import luongduongquan.com.demoappbanhang.Model.ObjectClass.LoaiSanPham;
-import luongduongquan.com.demoappbanhang.Model.TrangChu.XuLyMenu.XulyJSONMenu;
 import luongduongquan.com.demoappbanhang.R;
 
-public class ExpandListAdapterCustom extends BaseExpandableListAdapter {
+public class ExpandListAdapterCustom extends BaseExpandableListAdapter  {
+	private static final String TAG = "ExpandListAdapterCustom";
 
 	Context context;
 	List<LoaiSanPham> loaiSanPhamList;
@@ -21,22 +21,7 @@ public class ExpandListAdapterCustom extends BaseExpandableListAdapter {
 	public ExpandListAdapterCustom(Context context, List<LoaiSanPham> loaiSanPhamList) {
 		this.context = context;
 		this.loaiSanPhamList = loaiSanPhamList;
-
-
-
-		XulyJSONMenu xulyJSONMenu = new XulyJSONMenu();
-
-		int count = loaiSanPhamList.size();
-		for (int i = 0; i <count ; i++) {
-			int maloaiSP = loaiSanPhamList.get(i).getMALOAISP();
-			loaiSanPhamList.get(i).setListCon(xulyJSONMenu.getLoaiSanPhamTheoMaLoaiList(maloaiSP));
-		}
-
-
-
 	}
-
-
 
 	@Override
 	public int getGroupCount() {

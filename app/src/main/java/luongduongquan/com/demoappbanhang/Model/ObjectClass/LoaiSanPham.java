@@ -1,12 +1,25 @@
 package luongduongquan.com.demoappbanhang.Model.ObjectClass;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 
 public class LoaiSanPham {
 
-    int MALOAISP,MALOAICHA;
+    @SerializedName("MALOAISP")
+    @Expose
+    int MALOAISP;
+
+    @SerializedName("MALOAI_CHA")
+    @Expose
+    int MALOAICHA;
+
+    @SerializedName("TENLOAISP")
+    @Expose
     String TENLOAISP;
+
     List<LoaiSanPham> listCon;
 
     public int getMALOAISP() {

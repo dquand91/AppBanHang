@@ -5,14 +5,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import luongduongquan.com.demoappbanhang.Model.ObjectClass.LoaiSanPham;
-import luongduongquan.com.demoappbanhang.MyUtils.DownloadJSON;
+import luongduongquan.com.demoappbanhang.MyUtils.RetrofitUtils.APIUtils;
+import luongduongquan.com.demoappbanhang.MyUtils.RetrofitUtils.DataClientListener;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class XulyJSONMenu {
+public class XulyJSONMenu  {
+
+
+	List<LoaiSanPham> loaiSanPhamList = new ArrayList<>();
 
 	public List<LoaiSanPham> parserJSONMenu(String dataJSON){
 		List<LoaiSanPham> loaiSanPhamList = new ArrayList<>();
@@ -44,30 +49,45 @@ public class XulyJSONMenu {
 		return loaiSanPhamList;
 	}
 
-	public List<LoaiSanPham> getLoaiSanPhamTheoMaLoaiList(int maloaiSP){
+	public void getLoaiSanPhamTheoMaLoaiList(int maloaiSP){
 
-		List<LoaiSanPham> listLoaiSanPham = new ArrayList<>();
-		String dataJSON = "";
+		DataClientListener getLoaiSanPhamTheoCha = APIUtils.getDataRetrofit();
+		Call<List<LoaiSanPham>> callback = getLoaiSanPhamTheoCha.getLoaiSanPhamTheoCha(String.valueOf(maloaiSP));
+		callback.enqueue(new Callback<List<LoaiSanPham>>() {
+			@Override
+			public void onResponse(Call<List<LoaiSanPham>> call, Response<List<LoaiSanPham>> response) {
+			}
 
-		String urlLink = "http://172.18.128.58/appbanhang/loaisanpham.php";
-		HashMap<String, String> params = new HashMap<String, String>();;
-		params.put("maloaicha",String.valueOf(maloaiSP));
-		DownloadJSON downloadJSON = new DownloadJSON(urlLink, params);
-		downloadJSON.execute();
+			@Override
+			public void onFailure(Call<List<LoaiSanPham>> call, Throwable t) {
+			}
+		});
 
-		try {
-			dataJSON = downloadJSON.get();
 
-			XulyJSONMenu xulyJSONMenu = new XulyJSONMenu();
-			listLoaiSanPham = xulyJSONMenu.parserJSONMenu(dataJSON);
 
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
 
-		return listLoaiSanPham;
+//		List<LoaiSanPham> listLoaiSanPham = new ArrayList<>();
+//		String dataJSON = "";
+//
+//		String urlLink = "http://172.18.128.58/appbanhang/loaisanpham.php";
+//		HashMap<String, String> params = new HashMap<String, String>();;
+//		params.put("maloaicha",String.valueOf(maloaiSP));
+//		DownloadJSON downloadJSON = new DownloadJSON(urlLink, params);
+//		downloadJSON.execute();
+//
+//		try {
+//			dataJSON = downloadJSON.get();
+//
+//			XulyJSONMenu xulyJSONMenu = new XulyJSONMenu();
+//			listLoaiSanPham = xulyJSONMenu.parserJSONMenu(dataJSON);
+//
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		} catch (ExecutionException e) {
+//			e.printStackTrace();
+//		}
+//
+//		return listLoaiSanPham;
 
 	}
 

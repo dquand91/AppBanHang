@@ -7,5 +7,6 @@ import luongduongquan.com.demoappbanhang.Model.ObjectClass.LoaiSanPham;
 public interface IViewXuLyMenu {
 
 	void HienThiDanhSachMenu(List<LoaiSanPham>loaiSanPhamList);
+	void FailFromGetDanhSachMenu(String message);
 
 }

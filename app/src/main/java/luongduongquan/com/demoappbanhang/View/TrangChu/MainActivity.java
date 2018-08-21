@@ -87,4 +87,9 @@ public class MainActivity extends AppCompatActivity implements IViewXuLyMenu {
 		expandableListView.setAdapter(expandListAdapter);
 		expandListAdapter.notifyDataSetChanged();
 	}
+
+	@Override
+	public void FailFromGetDanhSachMenu(String message) {
+		Log.d("QUAN123", "FailFromGetDanhSachMenu: " + message);
+	}
 }
