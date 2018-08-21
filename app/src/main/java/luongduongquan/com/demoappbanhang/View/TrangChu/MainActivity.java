@@ -1,5 +1,6 @@
 package luongduongquan.com.demoappbanhang.View.TrangChu;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -20,6 +21,7 @@ import luongduongquan.com.demoappbanhang.Adapter.ViewPagerAdapterMain;
 import luongduongquan.com.demoappbanhang.Model.ObjectClass.LoaiSanPham;
 import luongduongquan.com.demoappbanhang.Presenter.TrangChu.PresenterLogicXuLyMenu;
 import luongduongquan.com.demoappbanhang.R;
+import luongduongquan.com.demoappbanhang.View.DangNhap.DangNhapActivity;
 
 public class MainActivity extends AppCompatActivity implements IViewXuLyMenu {
 
@@ -77,7 +79,16 @@ public class MainActivity extends AppCompatActivity implements IViewXuLyMenu {
 		if(mDrawerToggle.onOptionsItemSelected(item)){
 			return true;
 		}
-		return super.onOptionsItemSelected(item);
+
+		int id = item.getItemId();
+		switch (id){
+			case R.id.itDangNhap:
+				Intent intentDangNhap = new Intent(MainActivity.this, DangNhapActivity.class);
+				startActivity(intentDangNhap);
+				break;
+		}
+
+		return true;
 	}
 
 	@Override
