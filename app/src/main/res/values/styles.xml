@@ -20,5 +20,16 @@
     <style name="capfalse" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>
     </style>
+    
+    
+    <declare-styleable name="PasswordEditText">
+        <attr name="useStrike" format="boolean"></attr>
+    </declare-styleable>
+
+    <style name="changeColorPasswordEdittext" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorControlNormal">#60fd30</item>
+        <item name="colorControlActivated">#222dff</item>
+        <item name="colorControlHighlight">#ffef0d</item>
+    </style>
 
 </resources>

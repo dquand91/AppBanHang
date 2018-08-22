@@ -22,19 +22,36 @@
 
     </android.support.design.widget.TextInputLayout>
 
+    <!--<android.support.design.widget.TextInputLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="10dp"-->
+        <!--&gt;-->
+
+        <!--<luongduongquan.com.demoappbanhang.CustomView.PasswordEditText-->
+            <!--android:id="@+id/edMatKhauDangNhap"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="Mật khẩu"-->
+            <!--android:textColor="@color/colorBlack"-->
+            <!--app:useStrike="false"-->
+
+            <!--/>-->
+
+    <!--</android.support.design.widget.TextInputLayout>-->
+
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        >
+        android:layout_margin="10dp"     >
 
-        <EditText
+        <luongduongquan.com.demoappbanhang.CustomView.PasswordEditText
             android:id="@+id/edMatKhauDangNhap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Mật khẩu"
             android:textColor="@color/colorBlack"
-            />
+            app:useStrike="true"/>
 
     </android.support.design.widget.TextInputLayout>
 
