@@ -2,4 +2,6 @@
     <string name="app_name">DemoAppBanHang</string>
     <string name="open_drawer">Mở</string>
     <string name="close_drawer">Đóng</string>
+
+    <string name="facebook_app_id">1353328304798216</string>
 </resources>

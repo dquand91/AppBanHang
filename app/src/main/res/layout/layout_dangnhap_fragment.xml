@@ -13,7 +13,7 @@
         >
 
         <luongduongquan.com.demoappbanhang.CustomView.ClearEditTextCustom
-            android:id="@+id/edDiaChiEmailDangNhap"
+            android:id="@+id/edtDiaChiEmailDangNhap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Địa chỉ email"
@@ -22,31 +22,14 @@
 
     </android.support.design.widget.TextInputLayout>
 
-    <!--<android.support.design.widget.TextInputLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_margin="10dp"-->
-        <!--&gt;-->
-
-        <!--<luongduongquan.com.demoappbanhang.CustomView.PasswordEditText-->
-            <!--android:id="@+id/edMatKhauDangNhap"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:hint="Mật khẩu"-->
-            <!--android:textColor="@color/colorBlack"-->
-            <!--app:useStrike="false"-->
-
-            <!--/>-->
-
-    <!--</android.support.design.widget.TextInputLayout>-->
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"     >
+        android:layout_margin="10dp">
 
         <luongduongquan.com.demoappbanhang.CustomView.PasswordEditText
-            android:id="@+id/edMatKhauDangNhap"
+            android:id="@+id/edtMatKhauDangNhap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Mật khẩu"
@@ -56,7 +39,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <TextView
-        android:id="@+id/txtQuenMatKhauDangNhap"
+        android:id="@+id/tvQuenMatKhauDangNhap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Quên mật khẩu ?"
@@ -95,7 +78,7 @@
             android:drawableLeft="@drawable/facebookiconsmall"
             android:layout_weight="1"
             android:text="Facebook"
-            android:background="@drawable/vienfacebook"
+            android:background="@drawable/selector_facebook"
             android:textColor="@color/colorFacebook"
             android:layout_margin="10dp"
             />
@@ -108,7 +91,7 @@
             android:layout_weight="1"
             android:text="Google"
             android:textColor="@color/colorGoogle"
-            android:background="@drawable/viengoogle"
+            android:background="@drawable/selector_google"
             android:layout_margin="10dp"
             />
 
