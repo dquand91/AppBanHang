@@ -21,6 +21,7 @@ import com.facebook.login.LoginResult;
 import java.util.Arrays;
 
 import luongduongquan.com.demoappbanhang.R;
+import luongduongquan.com.demoappbanhang.View.TrangChu.MainActivity;
 
 public class FragmentDangNhap extends Fragment implements View.OnClickListener{
 
@@ -40,7 +41,8 @@ public class FragmentDangNhap extends Fragment implements View.OnClickListener{
 					public void onSuccess(LoginResult loginResult) {
 						Log.d("QUAN123", "FacebookCallback onSuccess: ");
 
-
+						Intent intentToTrangChu = new Intent(getActivity(), MainActivity.class);
+						startActivity(intentToTrangChu);
 
 					}
 

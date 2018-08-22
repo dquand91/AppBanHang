@@ -1,8 +1,11 @@
 package luongduongquan.com.demoappbanhang.Presenter.TrangChu;
 
 
+import com.facebook.AccessToken;
+
 import java.util.List;
 
+import luongduongquan.com.demoappbanhang.Model.DangNhap.ModelDangNhap;
 import luongduongquan.com.demoappbanhang.Model.ObjectClass.LoaiSanPham;
 import luongduongquan.com.demoappbanhang.MyUtils.RetrofitUtils.APIUtils;
 import luongduongquan.com.demoappbanhang.MyUtils.RetrofitUtils.DataClientListener;
@@ -14,6 +17,7 @@ import retrofit2.Response;
 public class PresenterLogicXuLyMenu implements IPresenterXuLyMenu{
 
 	IViewXuLyMenu iViewXuLyMenu;
+
 
 	public PresenterLogicXuLyMenu(IViewXuLyMenu iViewXuLyMenu){
 		this.iViewXuLyMenu = iViewXuLyMenu;
@@ -54,12 +58,14 @@ public class PresenterLogicXuLyMenu implements IPresenterXuLyMenu{
 									@Override
 									public void onResponse(Call<List<LoaiSanPham>> call, Response<List<LoaiSanPham>> response) {
 										loaiSanPhamListCon.get(finalJ).setListCon(response.body());
+										iViewXuLyMenu.HienThiDanhSachMenu(loaiSanPhamList);
 									}
 
 									@Override
 									public void onFailure(Call<List<LoaiSanPham>> call, Throwable t) {
 										iViewXuLyMenu.FailFromGetDanhSachMenu("FAIL, can not get data Child of Child from server --- " + t.getMessage());
 									}
+
 								});
 								if(j == count -1){
 									loaiSanPhamList.get(finalI).setListCon(loaiSanPhamListCon);
@@ -71,9 +77,10 @@ public class PresenterLogicXuLyMenu implements IPresenterXuLyMenu{
 							iViewXuLyMenu.FailFromGetDanhSachMenu("FAIL, can not get data Child from server --- " + t.getMessage());
 						}
 					});
-					if(i == count-1){
-						iViewXuLyMenu.HienThiDanhSachMenu(loaiSanPhamList);
-					}
+//					if(i == count-1){
+//						// Sau khi đã lấy xong hết cái list mới trả về cho View hiển thị.
+//						iViewXuLyMenu.HienThiDanhSachMenu(loaiSanPhamList);
+//					}
 				}
 
 			}
@@ -104,6 +111,17 @@ public class PresenterLogicXuLyMenu implements IPresenterXuLyMenu{
 //		} catch (ExecutionException e) {
 //			e.printStackTrace();
 //		}
+
+
+	}
+
+	@Override
+	public AccessToken LayUserNameFacebook() {
+		ModelDangNhap modelDangNhap = new ModelDangNhap();
+		AccessToken accessToken = modelDangNhap.LayTokenFacebookHienTai();
+
+		return accessToken;
+
 
 
 	}

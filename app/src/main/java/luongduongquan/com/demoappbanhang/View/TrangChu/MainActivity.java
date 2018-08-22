@@ -14,6 +14,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ExpandableListView;
 
+import com.facebook.AccessToken;
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 
 import luongduongquan.com.demoappbanhang.Adapter.ExpandListAdapterCustom;
@@ -35,9 +43,19 @@ public class MainActivity extends AppCompatActivity implements IViewXuLyMenu {
 
 	ExpandableListView expandableListView;
 
+	PresenterLogicXuLyMenu presenterLogicXuLyMenu;
+	String tenNguoiDung = "";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		FacebookSdk.sdkInitialize(getApplicationContext());
+
+		presenterLogicXuLyMenu = new PresenterLogicXuLyMenu(this);
+		presenterLogicXuLyMenu.LayDanhSachMenu();
+
+
 		setContentView(R.layout.activity_main);
 
 		toolbar = findViewById(R.id.appbar_toolbar_main);
@@ -62,8 +80,8 @@ public class MainActivity extends AppCompatActivity implements IViewXuLyMenu {
 		mTabLayout.setupWithViewPager(mViewPager);
 
 
-		PresenterLogicXuLyMenu presenterLogicXuLyMenu = new PresenterLogicXuLyMenu(this);
-		presenterLogicXuLyMenu.LayDanhSachMenu();
+
+
 //		// Add code to print out the key hash
 //		try {
 //			PackageInfo info = getPackageManager().getPackageInfo(
@@ -86,6 +104,34 @@ public class MainActivity extends AppCompatActivity implements IViewXuLyMenu {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.menutrangchu, menu);
+
+		AccessToken accessToken = presenterLogicXuLyMenu.LayUserNameFacebook();
+
+		GraphRequest request = GraphRequest.newMeRequest(
+				accessToken,
+				new GraphRequest.GraphJSONObjectCallback() {
+					@Override
+					public void onCompleted(
+							JSONObject object,
+							GraphResponse response) {
+
+						try {
+							tenNguoiDung = object.getString("name");
+							Log.d("QUAN123", "tennguoidung: " + tenNguoiDung);
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+
+
+					}
+				});
+		Bundle parameters = new Bundle();
+		parameters.putString("fields", "name");
+		request.setParameters(parameters);
+		request.executeAsync();
+
+
+
 		return true;
 	}
 
@@ -117,5 +163,11 @@ public class MainActivity extends AppCompatActivity implements IViewXuLyMenu {
 	@Override
 	public void FailFromGetDanhSachMenu(String message) {
 		Log.d("QUAN123", "FailFromGetDanhSachMenu: " + message);
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+
 	}
 }

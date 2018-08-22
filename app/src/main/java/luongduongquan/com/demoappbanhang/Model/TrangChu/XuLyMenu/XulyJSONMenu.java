@@ -1,5 +1,11 @@
 package luongduongquan.com.demoappbanhang.Model.TrangChu.XuLyMenu;
 
+import android.os.Bundle;
+
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,7 +21,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class XulyJSONMenu  {
-
+	String tenNguoiDung = "";
 
 	List<LoaiSanPham> loaiSanPhamList = new ArrayList<>();
 
@@ -89,6 +95,35 @@ public class XulyJSONMenu  {
 //
 //		return listLoaiSanPham;
 
+	}
+
+
+	public String LayTenNguoiDungFacebook(AccessToken accessToken){
+
+
+		GraphRequest request = GraphRequest.newMeRequest(
+				accessToken,
+				new GraphRequest.GraphJSONObjectCallback() {
+					@Override
+					public void onCompleted(
+							JSONObject object,
+							GraphResponse response) {
+
+						try {
+							tenNguoiDung = object.getString("name");
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+
+
+					}
+				});
+		Bundle parameters = new Bundle();
+		parameters.putString("fields", "name");
+		request.setParameters(parameters);
+		request.executeAsync();
+
+		return tenNguoiDung;
 	}
 
 }
